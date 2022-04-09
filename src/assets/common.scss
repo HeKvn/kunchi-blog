@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; // IE
+}
+
+p {
+  margin: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration:none;
+} 
+
+.card-suspension:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgb(44 62 161 / 6%), 0 20px 40px rgb(27 35 80 / 5%);
+}
