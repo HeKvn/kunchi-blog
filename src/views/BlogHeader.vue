@@ -18,7 +18,7 @@
         <i class="iconfont icon-caidan" @click="showRightSide = true"></i>
       </div>
     </div>
-    <right-side :isOpen="showRightSide" @close="showRightSide = false"></right-side>
+    <right-side :isOpen="showRightSide" @close="showRightSide = false" :sideWidth="'300px'"></right-side>
   </div>
 </template>
 
@@ -53,7 +53,6 @@ export default class BlogHeader extends Vue {
       box-shadow: 0 1px 8px 0 rgb(120 120 120 / 20%);
       // box-shadow: 0 1px 8px 0 #a2d9ff;
       z-index: 99;
-      background-image: url('../assets/wave.svg');
       .blog-name {
         line-height: 60px;
         img {

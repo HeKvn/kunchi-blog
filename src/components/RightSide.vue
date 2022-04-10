@@ -2,7 +2,7 @@
   <div :class="$style['right-side']">
     <div class="hover" v-if="isOpen" @click="clickHover"></div>
     <transition name="side-transition">
-      <div class="side-container" v-if="isOpen">
+      <div class="side-container" v-if="isOpen" :style="{ width: sideWidth }">
         <div @click="$emit('close', false)">关闭</div>
       </div>
     </transition>
@@ -15,6 +15,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component
 export default class RightSide extends Vue {
   @Prop({ type: Boolean, required: true, default: false }) readonly isOpen!: boolean
+  @Prop({ type: String, required: false }) readonly sideWidth?: string
 
   clickHover (): void {
     this.$emit('close', false)

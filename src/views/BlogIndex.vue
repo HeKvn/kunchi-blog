@@ -2,8 +2,28 @@
   <div :class="$style['blog-index']">
     <flex-one>
       <template v-slot:left>
-        <card class="card-suspension" v-for="(article, index) in articleList" :key="index">
-          {{article}}
+        <card class="card-suspension" v-for="item in articleList" :key="item.id">
+          <div class="header">
+            <div class="header-left">
+              <span>作者：{{item.author}}</span>
+              <span v-if="item.tags.length">
+                类别：
+                <span class="tag" v-for="tag in item.tags" :key="tag.id">{{tag.label}}</span>
+              </span>
+            </div>
+            <div class="header-right">
+              <span>创建于：{{item.createTime | date}}</span>
+              <span>上次更新：{{item.updateTime | date}}</span>
+            </div>
+          </div>
+          <div class="body" @click="routerToDeatil(item.id)">
+            <div class="body-img" v-if="item.cover">
+              <img :src="item.cover" alt="">
+            </div>
+            <div class="body-description">
+              <p>{{item.description}}</p>
+            </div>
+          </div>
         </card>
       </template>
       <template v-slot:right>
@@ -21,21 +41,101 @@
 import { Component, Vue } from 'vue-property-decorator'
 import FlexOne from './layout/FlexOne.vue'
 import Card from '@/components/Card.vue'
+import { ArticleList } from './types/BlogIndex'
 
 @Component({
   components: {
     FlexOne,
     Card
+  },
+  filters: {
+    date (val: string): string {
+      return new Date(val).toLocaleDateString()
+    }
   }
 })
 export default class BlogIndex extends Vue {
-  articleList: number[] = [1, 2, 3, 4]
+  articleList: ArticleList = []
+
+  mounted (): void {
+    const params = {
+      page: 2,
+      pageSize: 10
+    }
+    this.$axios.get('/api/article', { params })
+      .then(res => {
+        this.articleList = res.data.data.list
+      })
+  }
+
+  routerToDeatil (id: string): void {
+    this.$router.push({ name: 'ArticleDeatil', params: { id } })
+  }
 }
 </script>
 
 <style lang="scss" module>
 .blog-index {
   :global {
+    .header {
+      padding: 4px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      .header-left {
+        .tag {
+          &:hover {
+            cursor: pointer;
+            color: #409EFF;
+          }
+        }
+      }
+      span {
+        font-size: 12px;
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      @media screen and (max-width: 576px) {
+        .header-right {
+          span:nth-child(1) {
+            display: none;
+          }
+        }
+      }
+    }
+    .body {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      padding: 4px;
+      .body-img {
+        margin-right: 20px;
+        img {
+          width: 180px;
+          height: 150px;
+        }
+      }
+      .body-description {
+        font-size: 14px;
+      }
+      @media screen and (max-width: 576px) {
+        .body-img {
+          img {
+            width: 100px;
+            height: 80px;
+          }
+        }
+        .body-description {
+          -webkit-line-clamp: 4;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
     .author-info {
       text-align: center;
       user-select: none;

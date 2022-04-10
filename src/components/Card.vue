@@ -16,7 +16,7 @@ export default class Card extends Vue {}
   :global {
     min-height: 60px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 10px;
     box-sizing: border-box;
     margin: 20px;
