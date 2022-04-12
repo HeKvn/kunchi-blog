@@ -14,10 +14,11 @@ export default class ArticleDetail extends Vue {
 
   mounted (): void {
     this.getArticle()
+    window.scrollTo(0, 0)
   }
 
   getArticle (): void {
-    this.$axios.get(`/api/article/${this.$route.params.id}`)
+    this.$axios.get(`/article/${this.$route.params.id}`)
       .then(res => {
         const md = new MarkdownIt()
         this.mdStr = md.render(res.data.data.info.content)

@@ -2,13 +2,14 @@
   <div :class="$style['blog-index']">
     <flex-one>
       <template v-slot:left>
-        <card class="card-suspension" v-for="item in articleList" :key="item.id">
+        <card class="card-suspension" v-for="item in articleList" :key="item.id" @click.native="routerToDeatil(item.id)">
+          <div class="title">{{item.title}}</div>
           <div class="header">
             <div class="header-left">
               <span>作者：{{item.author}}</span>
               <span v-if="item.tags.length">
                 类别：
-                <span class="tag" v-for="tag in item.tags" :key="tag.id">{{tag.label}}</span>
+                <span class="tag" v-for="tag in item.tags" :key="tag.id" @click.stop="clickTag(tag.id)">{{tag.label}}</span>
               </span>
             </div>
             <div class="header-right">
@@ -16,7 +17,7 @@
               <span>上次更新：{{item.updateTime | date}}</span>
             </div>
           </div>
-          <div class="body" @click="routerToDeatil(item.id)">
+          <div class="body">
             <div class="body-img" v-if="item.cover">
               <img :src="item.cover" alt="">
             </div>
@@ -62,7 +63,7 @@ export default class BlogIndex extends Vue {
       page: 2,
       pageSize: 10
     }
-    this.$axios.get('/api/article', { params })
+    this.$axios.get('/article', { params })
       .then(res => {
         this.articleList = res.data.data.list
       })
@@ -71,17 +72,30 @@ export default class BlogIndex extends Vue {
   routerToDeatil (id: string): void {
     this.$router.push({ name: 'ArticleDeatil', params: { id } })
   }
+
+  clickTag (id: number): void {
+    console.log(id)
+  }
 }
 </script>
 
 <style lang="scss" module>
 .blog-index {
   :global {
+    .title {
+      font-weight: bold;
+      padding: 0 4px;
+      &:hover {
+        color: #409EFF;
+        cursor: pointer;
+      }
+    }
     .header {
       padding: 4px;
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid #ccc;
+      user-select: none;
       .header-left {
         .tag {
           &:hover {

@@ -6,6 +6,10 @@ import '@/assets/common.scss'
 import '@/assets/iconfont.css'
 import axios from 'axios'
 
+const isDev = process.env.NODE_ENV === 'development'
+
+axios.defaults.baseURL = isDev ? '/api' : '/service/blog'
+
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
