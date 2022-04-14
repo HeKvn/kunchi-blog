@@ -13,7 +13,7 @@
       @click="changePage(true, page)">{{page}}
     </span>
     <i
-      class="iconfont icon-xiayiye page-el operation"
+      class="iconfont icon-xiayiye page-el"
       :class="[+pageInfo.page === pageInfo.pages ? 'disabled' : 'operation']"
       @click="changePage(false, 1)">
     </i>
