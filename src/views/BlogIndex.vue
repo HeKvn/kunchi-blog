@@ -20,7 +20,7 @@
             </div>
             <div class="body">
               <div class="body-img" v-if="item.cover">
-                <img :src="item.cover" alt="">
+                <img :src="item.cover" :onerror="defaultImg"  alt="">
               </div>
               <div class="body-description">
                 <p>{{item.description}}</p>
@@ -63,6 +63,7 @@ import { PageInfo } from '@/components/types/Pagination'
 })
 export default class BlogIndex extends Vue {
   articleList: ArticleList = []
+  defaultImg = 'this.src="' + require('../assets/imgDefault.png') + '"'
   pageInfo: PageInfo = {
     page: '1',
     pageSize: '10',
@@ -97,6 +98,10 @@ export default class BlogIndex extends Vue {
   changePage (page: number): void {
     this.pageInfo.page = page.toString()
     this.getArticleList().then(() => window.scrollTo(0, 0))
+  }
+
+  imgError (): void {
+    console.log('我加载不出来')
   }
 }
 </script>
