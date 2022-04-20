@@ -18,7 +18,7 @@
         <i class="iconfont icon-caidan" @click="showRightSide = true"></i>
       </div>
     </div>
-    <right-side :isOpen="showRightSide" @close="showRightSide = false" :sideWidth="'300px'"></right-side>
+    <right-side :isOpen="showRightSide" @close="showRightSide = false" :isAdaptability="true"></right-side>
   </div>
 </template>
 
@@ -86,7 +86,7 @@ export default class BlogHeader extends Vue {
           &:hover::after {
             width: 100%;
           }
-          @media screen and (max-width: 1000px) {
+          @media screen and (max-width: 768px) {
             display: none;
           }
         }
@@ -100,7 +100,7 @@ export default class BlogHeader extends Vue {
           font-size: 24px;
           color: #409EFF;
           display: none;
-          @media only screen and (max-width: 1000px) {
+          @media only screen and (max-width: 768px) {
             display: inline-block;
           }
         }

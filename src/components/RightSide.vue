@@ -2,7 +2,7 @@
   <div :class="$style['right-side']">
     <div class="hover" v-if="isOpen" @click="clickHover"></div>
     <transition name="side-transition">
-      <div class="side-container" v-if="isOpen" :style="{ width: sideWidth }">
+      <div :class="['side-container', { 'adaptability': isAdaptability }]" v-if="isOpen" :style="{ width: sideWidth }">
         <div @click="$emit('close', false)">关闭</div>
       </div>
     </transition>
@@ -16,6 +16,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 export default class RightSide extends Vue {
   @Prop({ type: Boolean, required: true, default: false }) readonly isOpen!: boolean
   @Prop({ type: String, required: false }) readonly sideWidth?: string
+  @Prop({ type: Boolean, required: false }) readonly isAdaptability?: boolean
 
   clickHover (): void {
     this.$emit('close', false)
@@ -51,6 +52,17 @@ export default class RightSide extends Vue {
     }
     .side-transition-enter, .side-transition-leave-to {
       transform: translate3d(100%, 0, 0);
+    }
+    .adaptability {
+      @media screen and (min-width: 0) {
+        width: 200px;
+      }
+      @media screen and (min-width: 576px) {
+        width: 300px;
+      }
+      @media screen and (min-width: 767px) {
+        width: 400px;
+      }
     }
   }
 }
