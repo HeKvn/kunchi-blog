@@ -3,7 +3,12 @@
     <div class="hover" v-if="isOpen" @click="clickHover"></div>
     <transition name="side-transition">
       <div :class="['side-container', { 'adaptability': isAdaptability }]" v-if="isOpen" :style="{ width: sideWidth }">
-        <div @click="$emit('close', false)">关闭</div>
+        <div class="head" @click="$emit('close', false)">
+          <i class="iconfont icon-guanbi close-font"></i>
+        </div>
+        <div class="body">
+          <slot></slot>
+        </div>
       </div>
     </transition>
   </div>
@@ -45,6 +50,19 @@ export default class RightSide extends Vue {
       width: 200px;
       background-color: #fff;
       z-index: 1999;
+      .head {
+        height: 35px;
+        line-height: 35px;
+        .close-font {
+          cursor: pointer;
+          font-size: 24px;
+          float: right;
+          margin-right: 10px;
+        }
+      }
+      .body {
+        height: calc(100% - 35px);
+      }
     }
     .side-transition-enter-active, .side-transition-leave-active {
       transition: all ease .17s;
