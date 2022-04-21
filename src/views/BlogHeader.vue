@@ -9,16 +9,31 @@
       <div class="blog-menu">
         <ul>
           <li
-            :class="{'activeMenu': currentMenu === index}"
-            v-for="(menu, index) in menuList"
-            :key="index"
-            @click="currentMenu = index">{{menu}}
+           :class="{'active-menu': currentMenu === index}"
+           v-for="(menu, index) in menuList"
+           :key="index"
+           @click="currentMenu = index">{{menu}}
           </li>
         </ul>
         <i class="iconfont icon-caidan" @click="showRightSide = true"></i>
       </div>
     </div>
-    <right-side :isOpen="showRightSide" @close="showRightSide = false" :isAdaptability="true"></right-side>
+    <right-side :isOpen="showRightSide" @close="showRightSide = false" :isAdaptability="true">
+      <div class="rs-avator">
+        <img src="http://image.hekvn.top/avatar.jpg" alt="头像">
+      </div>
+      <div class="rs-menu">
+        <ul>
+          <li
+          :class="{ 'rs-active-menu': currentMenu === index }"
+           v-for="(menu, index) in menuList"
+           :key="index"
+           @click="currentMenu = index">
+            <span>{{menu}}</span>
+          </li>
+        </ul>
+      </div>
+    </right-side>
   </div>
 </template>
 
@@ -90,7 +105,7 @@ export default class BlogHeader extends Vue {
             display: none;
           }
         }
-        .activeMenu {
+        .active-menu {
           color: #0099ff;
           &::after {
             width: 100%;
@@ -100,10 +115,63 @@ export default class BlogHeader extends Vue {
           font-size: 24px;
           color: #409EFF;
           display: none;
+          cursor: pointer;
           @media only screen and (max-width: 768px) {
             display: inline-block;
           }
         }
+      }
+    }
+    .rs-avator {
+      width: 100%;
+      text-align: center;
+      img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+      }
+    }
+    .rs-menu {
+      user-select: none;
+      margin-top: 10px;
+      // border-top: 1px solid #ccc;
+      ul li {
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        // border-bottom: 1px solid #ccc;
+        position: relative;
+        span {
+          cursor: pointer;
+        }
+        &:before {
+          transition: 0.5s all ease;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          right: 50%;
+          bottom: 0;
+          opacity: 0;
+          content: '';
+          background-color: #0099ff;
+          z-index: -1;
+        }
+        &:hover, &:focus {
+          color: #fff;
+        }
+        &:hover:before, &:focus:before {
+          transition: 0.5s all ease;
+          left: 0;
+          right: 0;
+          opacity: 1;
+        }
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+      .rs-active-menu {
+        background-color: #0099ff;
+        color: #fff;
       }
     }
   }
