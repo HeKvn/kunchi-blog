@@ -9,10 +9,10 @@
       <div class="blog-menu">
         <ul>
           <li
-           :class="{'active-menu': currentMenu === index}"
+           :class="{'active-menu': currentMenu === menu.route}"
            v-for="(menu, index) in menuList"
            :key="index"
-           @click="currentMenu = index">{{menu}}
+           @click="changeMenu(menu.route)">{{menu.name}}
           </li>
         </ul>
         <i class="iconfont icon-caidan" @click="showRightSide = true"></i>
@@ -25,11 +25,11 @@
       <div class="rs-menu">
         <ul>
           <li
-          :class="{ 'rs-active-menu': currentMenu === index }"
+          :class="{ 'rs-active-menu': currentMenu === menu.route }"
            v-for="(menu, index) in menuList"
            :key="index"
-           @click="currentMenu = index">
-            <span>{{menu}}</span>
+           @click="changeMenu(menu.route)">
+            <span>{{menu.name}}</span>
           </li>
         </ul>
       </div>
@@ -40,6 +40,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import RightSide from '@/components/RightSide.vue'
+import { HeaderMenu } from './types/BlogHeader'
+import { isString } from '@/utils/Typetool'
 
 @Component({
   components: {
@@ -47,9 +49,32 @@ import RightSide from '@/components/RightSide.vue'
   }
 })
 export default class BlogHeader extends Vue {
-  menuList: string[] = ['博客首页', '归档', '分类', '关于', '扉页']
-  currentMenu = 0
+  menuList: HeaderMenu[] = [
+    { name: '博客首页', route: 'BlogIndex' },
+    { name: '归档', route: 'Record' },
+    { name: '分类', route: '' },
+    { name: '关于', route: '' },
+    { name: '扉页', route: '' }
+  ]
+
+  currentMenu = ''
   showRightSide = false
+
+  mounted (): void {
+    if (isString(this.$route.name)) this.currentMenu = this.$route.name
+    else {
+      this.currentMenu = 'BlogIndex'
+      this.$router.push({ name: 'BlogIndex' })
+    }
+  }
+
+  changeMenu (route: string): void {
+    if (!route) return
+    if (route === '' || route === this.currentMenu) return
+    this.currentMenu = route
+    this.$router.push({ name: route })
+    this.showRightSide = false
+  }
 }
 </script>
 

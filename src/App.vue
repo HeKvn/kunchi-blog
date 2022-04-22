@@ -9,9 +9,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import BlogHeader from '@/views/BlogHeader.vue'
 import BlogFooter from '@/views/BlogFooter.vue'
+import { Route } from 'vue-router'
+import { isString } from '@/utils/Typetool'
 
 @Component({
   components: {
@@ -19,7 +21,13 @@ import BlogFooter from '@/views/BlogFooter.vue'
     BlogFooter
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Watch('$route')
+  watchRoute (nr: Route): void {
+    if (isString(nr.name) && nr.meta) document.title = nr.meta.name
+    else document.title = '鲲池'
+  }
+}
 </script>
 
 <style lang="scss">

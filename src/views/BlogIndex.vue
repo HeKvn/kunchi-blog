@@ -75,16 +75,16 @@ export default class BlogIndex extends Vue {
     this.getArticleList()
   }
 
-  getArticleList (): Promise<void> {
+  async getArticleList (): Promise<void> {
     const params = {
       page: this.pageInfo.page,
       pageSize: 10
     }
-    return this.$axios.get('/article', { params })
-      .then(res => {
-        this.articleList = res.data.data.list
-        this.pageInfo = res.data.data.pagination
-      })
+    const { data: res } = await this.$axios.get('/article', { params })
+    if (res.code === 200) {
+      this.articleList = res.data.list
+      this.pageInfo = res.data.pagination
+    }
   }
 
   routerToDeatil (id: string): void {
@@ -98,10 +98,6 @@ export default class BlogIndex extends Vue {
   changePage (page: number): void {
     this.pageInfo.page = page.toString()
     this.getArticleList().then(() => window.scrollTo(0, 0))
-  }
-
-  imgError (): void {
-    console.log('我加载不出来')
   }
 }
 </script>

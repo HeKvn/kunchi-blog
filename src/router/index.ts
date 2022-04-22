@@ -7,12 +7,20 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'BlogIndex',
-    component: () => import('@/views/BlogIndex.vue')
+    component: () => import('@/views/BlogIndex.vue'),
+    meta: { name: '鲲池 - 博客' }
   },
   {
     path: '/detail/:id',
     name: 'ArticleDeatil',
-    component: () => import('@/views/ArticleDetail.vue')
+    component: () => import('@/views/ArticleDetail.vue'),
+    meta: { name: ' 鲲池 - 文章 ' }
+  },
+  {
+    path: '/record',
+    name: 'Record',
+    component: () => import('@/views/Record.vue'),
+    meta: { name: '鲲池 - 归档' }
   }
 ]
 

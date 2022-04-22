@@ -10,6 +10,8 @@ const isDev = process.env.NODE_ENV === 'development'
 
 axios.defaults.baseURL = isDev ? '/api' : '/service/blog'
 
+// axios.interceptors.response.use()
+
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
