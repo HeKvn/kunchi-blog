@@ -2,7 +2,7 @@
   <div :class="$style['article-detail']">
     <div class="detail" v-html="mdStr"></div>
     <span class="back">
-      fanh
+      <i class="iconfont icon-icon--fanhuidingbu"></i>
     </span>
   </div>
 </template>
@@ -62,11 +62,15 @@ export default class ArticleDetail extends Vue {
       }
     }
     .back {
-      position: fixed;
-      bottom: 150px;
-      right: 50px;
+      position: sticky;
+      top: calc(100vh - 200px);
+      float: right;
       z-index: 99;
+      margin-right: 30px;
       cursor: pointer;
+      .iconfont {
+        font-size: 30px;
+      }
     }
   }
 }
