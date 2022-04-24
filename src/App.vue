@@ -13,7 +13,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import BlogHeader from '@/views/BlogHeader.vue'
 import BlogFooter from '@/views/BlogFooter.vue'
 import { Route } from 'vue-router'
-import { isString } from '@/utils/Typetool'
+import { isString } from '@/utils/typeTool'
 
 @Component({
   components: {

@@ -41,7 +41,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import RightSide from '@/components/RightSide.vue'
 import { HeaderMenu } from './types/BlogHeader'
-import { isString } from '@/utils/Typetool'
+import { isString } from '@/utils/typeTool'
 
 @Component({
   components: {
