@@ -6,3 +6,8 @@ export interface RecordObj {
   tags: Tag[]
   title: string
 }
+
+export interface SplitRecord {
+  year: string;
+  record: RecordObj[]
+}

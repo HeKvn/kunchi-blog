@@ -1,15 +1,18 @@
 <template>
   <div :class="$style.record">
-    <div class="record-item" v-for="item in recordList" :key="item.id" @click="clickRecordItem(item.id)">
-      <span class="time">{{item.createTime | formatDay}}</span>
-      <span class="title">{{item.title}}</span>
+    <div class="record-container" v-for="(item, index) in splitList" :key="index">
+      <h2>{{item.year}}</h2>
+      <div class="record-item" v-for="record in item.record" :key="record.id" @click="clickRecordItem(record.id)">
+        <span class="time">{{record.createTime | formatDay}}</span>
+        <span class="title">{{record.title}}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { RecordObj } from './types/Record'
+import { RecordObj, SplitRecord } from './types/Record'
 import { formatDate } from '@/utils/format'
 
 @Component({
@@ -21,6 +24,31 @@ import { formatDate } from '@/utils/format'
 })
 export default class Record extends Vue {
   recordList: RecordObj[] = []
+
+  get splitList (): SplitRecord[] {
+    const list: SplitRecord[] = []
+    let tempList: RecordObj[] = []
+    let tempYear = ''
+    for (let i = 0; i < this.recordList.length; i++) {
+      const year = this.recordList[i].createTime.substring(0, 4)
+      if (year !== tempYear) {
+        list.push({ year, record: [] })
+        if (!tempYear) list[0].record = tempList
+        else {
+          const index = list.findIndex(o => o.year === tempYear)
+          if (~index) list[index].record = tempList
+        }
+        tempYear = year
+        tempList = [this.recordList[i]]
+        continue
+      }
+      if (i === this.recordList.length - 1) {
+        list[list.length - 1].record = [...tempList, this.recordList[i]]
+      }
+      tempList = [...tempList, this.recordList[i]]
+    }
+    return list
+  }
 
   mounted (): void {
     this.getRecord()
@@ -55,21 +83,26 @@ export default class Record extends Vue {
     padding: 0 20px;
     height: calc(100vh - 224px);
     overflow-y: auto;
-    .record-item {
-      border-bottom: 1px dashed #ccc;
-      padding: 10px;
-      cursor: pointer;
-      &:last-child {
-        border-bottom: none;
+    .record-container {
+      h2 {
+        padding: 0 10px;
       }
-      .time {
-        display: inline-block;
-        width: 100px;
-        color: #909399;
-      }
-      .title {
-        &:hover {
-          color: #0099ff;
+      .record-item {
+        border-bottom: 1px dashed #ccc;
+        padding: 10px;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: none;
+        }
+        .time {
+          display: inline-block;
+          width: 60px;
+          color: #909399;
+        }
+        .title {
+          &:hover {
+            color: #0099ff;
+          }
         }
       }
     }
