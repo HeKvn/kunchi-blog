@@ -1,9 +1,6 @@
 <template>
   <div :class="$style['article-detail']">
     <div class="detail" v-html="mdStr"></div>
-    <span class="back">
-      <i class="iconfont icon-icon--fanhuidingbu"></i>
-    </span>
   </div>
 </template>
 
@@ -36,7 +33,6 @@ export default class ArticleDetail extends Vue {
   :global {
     min-height: 100vh;
     padding: 0 20px;
-    position: relative;
     .detail {
       img {
         max-width: 1100px;
@@ -59,17 +55,6 @@ export default class ArticleDetail extends Vue {
           max-width: 310px;
           max-height: 310px;
         }
-      }
-    }
-    .back {
-      position: sticky;
-      top: calc(100vh - 200px);
-      float: right;
-      z-index: 99;
-      margin-right: 30px;
-      cursor: pointer;
-      .iconfont {
-        font-size: 30px;
       }
     }
   }
