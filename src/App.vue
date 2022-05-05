@@ -24,7 +24,7 @@ import { isString } from '@/utils/typeTool'
 export default class App extends Vue {
   @Watch('$route')
   watchRoute (nr: Route): void {
-    if (isString(nr.name) && nr.meta) document.title = nr.meta.name
+    if (isString(nr.name) && nr.meta) document.title = nr.meta.title
     else document.title = '鲲池'
   }
 }

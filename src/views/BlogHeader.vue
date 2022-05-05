@@ -52,9 +52,9 @@ export default class BlogHeader extends Vue {
   menuList: HeaderMenu[] = [
     { name: '博客首页', route: 'BlogIndex' },
     { name: '归档', route: 'Record' },
-    { name: '分类', route: '' },
-    { name: '关于', route: '' },
-    { name: '扉页', route: '' }
+    { name: '分类', route: 'Category' },
+    { name: '关于', route: 'About' },
+    { name: '扉页', route: 'Flyleaf' }
   ]
 
   currentMenu = ''
