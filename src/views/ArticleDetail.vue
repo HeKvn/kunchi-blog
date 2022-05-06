@@ -33,24 +33,30 @@ export default class ArticleDetail extends Vue {
   :global {
     min-height: 100vh;
     padding: 0 20px;
+    display: flex;
+    justify-content: center;
     .detail {
+      width: 1100px;
       img {
         max-width: 1100px;
         max-height: 1100px;
       }
       @media screen and (max-width: 992px) {
+        width: 790px;
         img {
           max-width: 790px;
           max-height: 790px;
         }
       }
       @media screen and (max-width: 768px) {
+        width: 650px;
         img {
           max-width: 650px;
           max-height: 650px;
         }
       }
       @media screen and (max-width: 576px) {
+        width: 310px;
         img {
           max-width: 310px;
           max-height: 310px;
