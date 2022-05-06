@@ -39,6 +39,12 @@ const routes: Array<RouteConfig> = [
     name: 'Flyleaf',
     component: () => import('@/views/Flyleaf.vue'),
     meta: { title: '鲲池 - 扉页' }
+  },
+  {
+    path: '/list',
+    name: 'List',
+    component: () => import('@/views/ArticleForTag.vue'),
+    meta: { title: '鲲池 - 文章分类' }
   }
 ]
 

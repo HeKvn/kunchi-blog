@@ -91,8 +91,8 @@ export default class BlogIndex extends Vue {
     this.$router.push({ name: 'ArticleDeatil', params: { id } })
   }
 
-  clickTag (id: number): void {
-    console.log(id)
+  clickTag (id: string): void {
+    this.$router.push({ name: 'List', query: { tagid: id } })
   }
 
   changePage (page: number): void {

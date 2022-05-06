@@ -1,6 +1,11 @@
 <template>
   <div :class="$style.category">
-    <span class="category-btn" v-for="item in categories" :key="item.id">{{item.label}}</span>
+    <span
+     class="category-btn"
+     v-for="item in categories"
+     :key="item.id"
+     @click="clickTag(item.id)">{{item.label}}
+    </span>
   </div>
 </template>
 
@@ -13,13 +18,17 @@ export default class Category extends Vue {
   categories: Tag[] = []
 
   mounted (): void {
-    this.getCategory()
+    this.getTags()
   }
 
-  async getCategory (): Promise<void> {
+  async getTags (): Promise<void> {
     const { data: res } = await this.$axios.get('/tag')
     if (res.code !== 200) return
     this.categories = res.data.list
+  }
+
+  clickTag (id: string): void {
+    this.$router.push({ name: 'List', query: { tagid: id } })
   }
 }
 </script>
