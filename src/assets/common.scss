@@ -40,6 +40,7 @@ pre.hljs {
   code {
     display: flex;
     justify-content: space-between;
+    overflow-x: auto;
   }
   ol {
     list-style: decimal;
