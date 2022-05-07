@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import MarkdownIt from 'markdown-it'
+import { markdown } from '@/utils/markdownIt'
 
 @Component
 export default class ArticleDetail extends Vue {
@@ -19,10 +19,9 @@ export default class ArticleDetail extends Vue {
 
   async getArticle (): Promise<void> {
     const { data: res } = await this.$axios.get(`/article/${this.$route.params.id}`)
-    const md = new MarkdownIt()
     if (res.code === 200) {
       document.title = `鲲池 - ${res.data.info.title}`
-      this.mdStr = md.render(res.data.info.content)
+      this.mdStr = markdown.render(res.data.info.content)
     } else this.mdStr = '文章获取失败'
   }
 }
