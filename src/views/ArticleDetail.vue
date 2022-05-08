@@ -67,10 +67,10 @@ export default class ArticleDetail extends Vue {
         }
       }
       @media screen and (max-width: 576px) {
-        width: 310px;
+        width: 340px;
         img {
-          max-width: 310px;
-          max-height: 310px;
+          max-width: 340px;
+          max-height: 340px;
         }
       }
     }

@@ -39,7 +39,7 @@ export default class App extends Vue {
     left: 0;
   }
   .blog-container {
-    padding: 80px 0 0;
+    padding: 80px 0 20px 0;
     // background-color: #a2d9ff;
     background: url('./assets/blog_bg.jpg');
   }
