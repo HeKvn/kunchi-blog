@@ -36,6 +36,18 @@ export default class ArticleDetail extends Vue {
     justify-content: center;
     .detail {
       width: 1100px;
+      background-image: linear-gradient(90deg, rgba(60, 10, 30, 0.04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
+      background-size: 20px 20px;
+      background-position: 10%;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 2px;
+      blockquote {
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid #dfe2e5;
+        margin: 16px 0;
+      }
       img {
         max-width: 1100px;
         max-height: 1100px;
