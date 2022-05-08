@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import ArticleDeatil from '@/views/ArticleDetail.vue'
+import Record from '@/views/Record.vue'
 
 Vue.use(VueRouter)
 
@@ -13,13 +15,13 @@ const routes: Array<RouteConfig> = [
   {
     path: '/detail/:id',
     name: 'ArticleDeatil',
-    component: () => import('@/views/ArticleDetail.vue'),
+    component: ArticleDeatil,
     meta: { title: ' 鲲池 - 文章 ' }
   },
   {
     path: '/record',
     name: 'Record',
-    component: () => import('@/views/Record.vue'),
+    component: Record,
     meta: { title: '鲲池 - 归档' }
   },
   {

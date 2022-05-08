@@ -35,12 +35,32 @@ a {
 
 // 以下是代码块的行号样式
 pre.hljs {
-  padding: 8px 2px;
+  padding: 0 2px 2px 2px;
   border-radius: 5px;
+  &::before {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 100%;
+    background: url('../assets/mac-operation.png') 10px 10px no-repeat;
+    background-size: 40px;
+  }
   code {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 5px;
     overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius:10px;
+      background-color:#F5F5F5;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius:10px;
+      background-color:#489ff7;
+    }
   }
   ol {
     list-style: decimal;
@@ -49,11 +69,8 @@ pre.hljs {
     padding: 0;
     li {
       list-style: decimal-leading-zero;
-      position: relative;
       padding-left: 10px;
       .line-num {
-        position: absolute;
-        // left: -40px;
         top: 0;
         width: 40px;
         height: 100%;
