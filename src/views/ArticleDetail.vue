@@ -1,6 +1,8 @@
 <template>
   <div :class="$style['article-detail']">
-    <div class="detail" v-html="mdStr"></div>
+    <div class="margin-content">
+      <div class="detail" v-html="mdStr"></div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +36,10 @@ export default class ArticleDetail extends Vue {
     padding: 0 20px;
     display: flex;
     justify-content: center;
+    .margin-content {
+      padding: 5px;
+      background-color: #fff;
+    }
     .detail {
       width: 1100px;
       background-image: linear-gradient(90deg, rgba(60, 10, 30, 0.04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
