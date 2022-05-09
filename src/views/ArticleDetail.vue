@@ -32,7 +32,7 @@ export default class ArticleDetail extends Vue {
 <style lang="scss" module>
 .article-detail {
   :global {
-    min-height: 100vh;
+    min-height: calc(100vh - 224px);
     padding: 0 20px;
     display: flex;
     justify-content: center;
@@ -42,6 +42,7 @@ export default class ArticleDetail extends Vue {
     }
     .detail {
       width: 1100px;
+      min-height: calc(100vh - 248px);
       background-image: linear-gradient(90deg, rgba(60, 10, 30, 0.04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
       background-size: 20px 20px;
       background-position: 10%;
@@ -73,10 +74,10 @@ export default class ArticleDetail extends Vue {
         }
       }
       @media screen and (max-width: 576px) {
-        width: 340px;
+        width: 330px;
         img {
-          max-width: 340px;
-          max-height: 340px;
+          max-width: 330px;
+          max-height: 330px;
         }
       }
     }
