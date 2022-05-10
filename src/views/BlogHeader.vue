@@ -9,7 +9,7 @@
       <div class="blog-menu">
         <ul>
           <li
-           :class="{'active-menu': currentMenu === menu.route}"
+           :class="{'active-menu': currentRoute === menu.route}"
            v-for="(menu, index) in menuList"
            :key="index"
            @click="changeMenu(menu.route)">{{menu.name}}
@@ -25,7 +25,7 @@
       <div class="rs-menu">
         <ul>
           <li
-          :class="{ 'rs-active-menu': currentMenu === menu.route }"
+          :class="{ 'rs-active-menu': currentRoute === menu.route }"
            v-for="(menu, index) in menuList"
            :key="index"
            @click="changeMenu(menu.route)">
@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import RightSide from '@/components/RightSide.vue'
 import { HeaderMenu } from './types/BlogHeader'
 import { isString } from '@/utils/typeTool'
@@ -57,21 +57,25 @@ export default class BlogHeader extends Vue {
     { name: '扉页', route: 'Flyleaf' }
   ]
 
-  currentMenu = ''
+  currentRoute = ''
   showRightSide = false
 
+  @Watch('$route.name')
+  watchRoute (nv: string): void {
+    this.currentRoute = nv
+  }
+
   mounted (): void {
-    if (isString(this.$route.name)) this.currentMenu = this.$route.name
+    if (isString(this.$route.name)) this.currentRoute = this.$route.name
     else {
-      this.currentMenu = 'BlogIndex'
+      this.currentRoute = 'BlogIndex'
       this.$router.push({ name: 'BlogIndex' })
     }
   }
 
   changeMenu (route: string): void {
     if (!route) return
-    if (route === '' || route === this.currentMenu) return
-    this.currentMenu = route
+    if (route === '' || route === this.currentRoute) return
     this.$router.push({ name: route })
     this.showRightSide = false
   }
