@@ -11,7 +11,7 @@
             <div class="info">
               <div class="author-name">{{article.author}}</div>
               <div class="update-time">
-                <span>最近更新：{{article.updateTime | date}}</span>
+                <span>最近更新：{{article.updateTime | date('update')}}</span>
               </div>
             </div>
           </div>
@@ -21,7 +21,18 @@
         </div>
         <div class="detail" v-html="mdStr"></div>
       </div>
-      <div class="side"></div>
+      <div class="side">
+        <div class="avator">
+          <img src="http://image.hekvn.top/avatar.jpg" alt="hekvn">
+        </div>
+        <div class="create-time">
+          <span>文章创建于</span>
+          <span>{{article.createTime | date('create')}}</span>
+        </div>
+        <div class="rss-info">
+          <a href="https://github.com/HeKvn"><i class="iconfont icon-github"></i></a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,11 +42,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import { markdown } from '@/utils/markdownIt'
 import { Article } from './types/Base'
 import { formatDate } from '@/utils/format'
+import { FilterDate } from './types/Article'
 
 @Component({
   filters: {
-    date (val: string) {
-      return formatDate(val, 'YY年MM月DD日 hh:mm')
+    date (val: string, key: FilterDate) {
+      if (key === 'update') return formatDate(val, 'YY年MM月DD日 hh:mm')
+      if (key === 'create') return formatDate(val, 'YY年MM月DD日')
     }
   }
 })
@@ -160,10 +173,35 @@ export default class ArticleDetail extends Vue {
     }
     .side {
       width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
+      height: 250px;
+      background-color: #fff;
       margin-left: 20px;
+      padding: 15px 5px;
       display: none;
+      .avator {
+        text-align: center;
+        img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: 5px solid rgba(234, 234, 234, 0.5);
+        }
+      }
+      .create-time {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        text-align: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #DCDFE6;
+      }
+      .rss-info {
+        text-align: center;
+        padding: 5px 0;
+        i {
+          font-size: 30px;
+        }
+      }
       @media (min-width: 992px) {
         display: block;
       }

@@ -1,4 +1,4 @@
-# myblog
+# kunchi-blog
 
 ## Website
 
