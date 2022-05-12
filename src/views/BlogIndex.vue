@@ -1,6 +1,6 @@
 <template>
   <div :class="$style['blog-index']">
-    <flex-one>
+    <flex-one v-if="articleList.length">
       <template v-slot:left>
         <div class="article-list">
           <card class="card-suspension" v-for="item in articleList" :key="item.id" @click.native="routerToDeatil(item.id)">
@@ -38,6 +38,7 @@
         </div>
       </template>
     </flex-one>
+    <skeleton v-else></skeleton>
   </div>
 </template>
 
@@ -48,16 +49,19 @@ import Card from '@/components/Card.vue'
 import Pagination from '@/components/Pagination.vue'
 import { ArticleList } from './types/BlogIndex'
 import { PageInfo } from '@/components/types/Pagination'
+import { formatDate } from '@/utils/format'
+import Skeleton from '@/components/Skeleton.vue'
 
 @Component({
   components: {
     FlexOne,
     Card,
-    Pagination
+    Pagination,
+    Skeleton
   },
   filters: {
     date (val: string): string {
-      return new Date(val).toLocaleDateString()
+      return formatDate(val, 'YY年MM月DD日')
     }
   }
 })
@@ -120,6 +124,7 @@ export default class BlogIndex extends Vue {
         justify-content: space-between;
         border-bottom: 1px solid #ccc;
         user-select: none;
+        flex-wrap: wrap;
         .header-left {
           .tag {
             &:hover {
@@ -130,7 +135,7 @@ export default class BlogIndex extends Vue {
         }
         span {
           font-size: 12px;
-          margin-right: 20px;
+          margin-right: 10px;
           &:last-child {
             margin-right: 0;
           }
