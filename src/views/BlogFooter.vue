@@ -5,7 +5,7 @@
     <p>转载内容版权归作者及来源网站所有，本站原创内容转载请注明来源。</p>
     <p>Copyright © 2020-2022 hekvn.top All Rights Reserved.</p>
     <div class="beian-info">
-      <span>备案信息：<a class="beian-target" href="https://beian.miit.gov.cn/" target="blank">粤ICP备20002196号-1</a></span>
+      <span>备案信息：<a class="beian-target" href="https://beian.miit.gov.cn/" target="blank">粤ICP备2022049783</a></span>
       <img src="@/assets/beian_icon.png" alt="公安">
     </div>
   </div>
