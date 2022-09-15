@@ -167,8 +167,26 @@ export default class ArticleDetail extends Vue {
         border-left: 0.25em solid #dfe2e5;
         margin: 16px 0;
       }
+      h1, h2, h3, h4, h5 {
+        padding: 3px 0;
+      }
+      ol li {
+        list-style: initial;
+      }
       img {
         width: 100%;
+      }
+      p {
+        padding: 3px 0;
+      }
+      p code, li code {
+        color: #ef7060;
+      }
+      code ol li {
+        list-style: decimal-leading-zero;
+      }
+      tbody {
+        border: 1px solid #ccc;
       }
     }
     .side {

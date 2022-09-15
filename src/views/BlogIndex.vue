@@ -8,7 +8,7 @@
             <div class="header">
               <div class="header-left">
                 <span>作者：{{item.author}}</span>
-                <span v-if="item.tags.length">
+                <span class="category" v-if="item.tags.length">
                   类别：
                   <span class="tag" v-for="tag in item.tags" :key="tag.id" @click.stop="clickTag(tag.id)">{{tag.label}}</span>
                 </span>
@@ -143,6 +143,11 @@ export default class BlogIndex extends Vue {
         @media screen and (max-width: 576px) {
           .header-right {
             span:nth-child(1) {
+              display: none;
+            }
+          }
+          .header-left {
+            .category {
               display: none;
             }
           }
