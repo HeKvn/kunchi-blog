@@ -24,7 +24,7 @@ export default class BlogFooter extends Vue {}
     // height: 150px;
     background-color: #1661ab; // 清水蓝
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     font-size: 12px;
     text-align: center;
     p {
