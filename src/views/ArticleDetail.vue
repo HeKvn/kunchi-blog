@@ -181,6 +181,7 @@ export default class ArticleDetail extends Vue {
       }
       p code, li code {
         color: #ef7060;
+        font-family: "Sans Mono", "Consolas", "Courier", monospace;
       }
       code ol li {
         list-style: decimal-leading-zero;
