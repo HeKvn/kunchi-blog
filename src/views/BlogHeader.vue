@@ -2,7 +2,7 @@
   <div :class="$style.header">
     <div class="blog-header">
       <div class="blog-name">
-        <a href="http://hekvn.top">
+        <a href="https://hekvn.top">
           <img src="../assets/kunchi.png">
         </a>
       </div>
