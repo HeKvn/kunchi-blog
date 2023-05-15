@@ -32,7 +32,7 @@
       </template>
       <template v-slot:right>
         <div class="author-info">
-          <img class="avator" src="http://image.hekvn.top/avatar.jpg" alt="头像">
+          <img class="avator" src="https://image.hekvn.top/avatar.jpg" alt="头像">
           <div>深壑有鸟扶摇来</div>
           <div>铩化北冥池中鱼</div>
         </div>

@@ -20,7 +20,7 @@
     </div>
     <right-side :isOpen="showRightSide" @close="showRightSide = false" :isAdaptability="true">
       <div class="rs-avator">
-        <img src="http://image.hekvn.top/avatar.jpg" alt="头像">
+        <img src="https://image.hekvn.top/avatar.jpg" alt="头像">
       </div>
       <div class="rs-menu">
         <ul>

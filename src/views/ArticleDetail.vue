@@ -6,7 +6,7 @@
           <h1>{{article.title}}</h1>
           <div class="author-info-block">
             <div class="avator">
-              <img src="http://image.hekvn.top/avatar.jpg" alt="hekvn">
+              <img src="https://image.hekvn.top/avatar.jpg" alt="hekvn">
             </div>
             <div class="info">
               <div class="author-name">{{article.author}}</div>
@@ -23,7 +23,7 @@
       </div>
       <div class="side">
         <div class="avator">
-          <img src="http://image.hekvn.top/avatar.jpg" alt="hekvn">
+          <img src="https://image.hekvn.top/avatar.jpg" alt="hekvn">
         </div>
         <div class="create-time">
           <span>文章创建于</span>
