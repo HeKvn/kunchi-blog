@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.skeleton">
+  <div class="skeleton">
     <flex-one>
       <template v-slot:left>
         <div class="list-skeleton">
@@ -27,32 +27,29 @@ export default class Skeleton extends Vue {
 }
 </script>
 
-<style lang="scss" module>
+<style lang="scss" scoped>
 .skeleton {
-  :global {
-    .list-skeleton {
-      .box {
-        height: 223px;
-        margin: 20px;
-        border-radius: 3px;
-        background: linear-gradient(100deg,
-         rgba(255, 255, 255, 0) 30%,
-         rgba(255, 255, 255, 0.5) 40%,
-         rgba(255, 255, 255, 0) 50%
-        ) #ccc;
-        // background-size: 200% 100%;
-        background-position-x: 120%;
-        animation: loading 2s ease-in-out infinite;
-      }
+  .list-skeleton {
+    .box {
+      background: #c8c8c8;
+      animation: loading 2s ease infinite;
+      height: 223px;
+      margin: 20px;
+      border-radius: 3px;
     }
   }
 }
 @keyframes loading {
-  // from {
-  //   background-position: 0px 0px;
-  // }
-  to {
-    background-position-x: -20%;
+  0% {
+        background-size: 300% 100%;
+        background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
+        background-position: 100% 50%;
+    }
+
+  100% {
+      background-size: 300% 100%;
+      background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
+      background-position: 0 50%;
   }
 }
 </style>
