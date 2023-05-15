@@ -41,15 +41,15 @@ export default class Skeleton extends Vue {
 }
 @keyframes loading {
   0% {
-        background-size: 300% 100%;
-        background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
-        background-position: 100% 50%;
+      background-size: 300% 100%;
+      background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
+      background-position: 100% 50%;
     }
 
   100% {
-      background-size: 300% 100%;
-      background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
-      background-position: 0 50%;
+    background-size: 300% 100%;
+    background-image: linear-gradient(100deg, #c8c8c8 40%, #fff 50%, #c8c8c8 60%);
+    background-position: 0 50%;
   }
 }
 </style>
